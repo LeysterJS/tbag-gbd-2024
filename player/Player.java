@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Samuel Ratzel
+ * @author Lukas Knappich | Samuel Ratzel
  * @version 1.0
  * @since 28.02.24
  */
@@ -52,6 +52,10 @@ public class Player {
             System.out.println(weapon.getName() + " | Type: " + weapon.getType() + " | Damage: " + weapon.getMinDamage() + " - " + weapon.getMaxDamage() +
                     " | Critical Damage: " + weapon.getCritDamage() + " | Critical Chance: " + weapon.getCritChance());
         }
+    }
+
+    public void takeDamage() {
+
     }
 
     public double getHealth() {

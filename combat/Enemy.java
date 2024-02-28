@@ -2,7 +2,7 @@ package de.tbag.gbd.combat;
 import de.tbag.gbd.combat.Weapon;
 
 /**
- * @author Lukas Knappich
+ * @author Lukas Knappich | Samuel Ratzel
  * @version 1.0
  * @since 28.02.24
  */

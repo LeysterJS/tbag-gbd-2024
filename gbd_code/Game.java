@@ -1,7 +1,11 @@
 package de.tbag.gbd.gbd_code;
 
 import de.tbag.gbd.AdventureGame;
+import de.tbag.gbd.combat.Combat;
+import de.tbag.gbd.combat.Enemy;
 import de.tbag.gbd.combat.Weapon;
+import de.tbag.gbd.combat.WeaponType;
+import de.tbag.gbd.player.Player;
 
 /**
  * @author Samuel Ratzel | Lukas Knappich | [UR NAME]
