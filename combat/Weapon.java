@@ -10,7 +10,7 @@ public class Weapon {
 
     public Weapon(String name, WeaponType type, int minDamage, int maxDamage, int critDamage, double critChance) {
         this.name = name;
-        this.type = type;
+        this.weaponType = weaponType;
         this.minDamage = minDamage;
         this.maxDamage = maxDamage;
         this.critDamage = critDamage;

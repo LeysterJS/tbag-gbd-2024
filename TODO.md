@@ -1,0 +1,1 @@
+Player.equipped weapon = NULL in combat --> waffe wird nicht in player übergeben
