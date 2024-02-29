@@ -1,6 +1,10 @@
 package de.tbag.gbd.combat;
 
+import de.tbag.gbd.AdventureGame;
+import de.tbag.gbd.cosmetic.ConsoleColors;
 import de.tbag.gbd.player.Player;
+import de.tbag.gbd.potions.Potion;
+import de.tbag.gbd.potions.PotionsType;
 
 /**
  * @author Lukas Knappich | Samuel Ratzel
@@ -9,43 +13,208 @@ import de.tbag.gbd.player.Player;
  */
 
 public class Combat {
-    public static void engageInCombat(Player player, Enemy enemy) {
+    private static AdventureGame game;
+    private static Potion potion;
+
+    public Combat(AdventureGame adventureGame) {
+        this.game = adventureGame;
+    }
+
+    public static void engageInCombat(Player player, Enemy enemy) throws InterruptedException {
         System.out.println("A wild " + enemy.getName() + " appears!");
 
-        while (player.getHealth() > 0 && enemy.getHp() > 0) {
-            int playerDamage = playerAttack(player.getEquippedWeapon());
-            System.out.println(player.getEquippedWeapon());
-            enemy.takeDamage(playerDamage);
-            System.out.println(player.getName() + " hits the " + enemy.getName() + " for " + playerDamage + " damage!");
+        while (player.getHealth() > 0 && enemy.getHealth() > 0) {
+            game.show(player.getName() + "'s turn:");
+            game.show(ConsoleColors.GREEN + "1. Attack with a weapon" + ConsoleColors.RESET);
+            game.show(ConsoleColors.GREEN + "2. Heal with a potion" + ConsoleColors.RESET);
+            game.show(ConsoleColors.GREEN + "3. Run away" + ConsoleColors.RESET);
 
-            if (enemy.getHp() <= 0) {
-                System.out.println("The " + enemy.getName() + " has been defeated!");
+            int choice = Integer.parseInt(game.ask("Enter the number of your choice:"));
+            switch (choice) {
+                case 1:
+                    playerAttack(player, enemy);
+                    break;
+                case 2:
+                    playerHeal(player);
+                    break;
+                case 3:
+                    game.show("You run away from the battle!");
+                    return;
+                default:
+                    game.show("Invalid choice. Please try again.");
+                    break;
+            }
+
+            if (enemy.getHealth() <= 0) {
+                game.show("The " + enemy.getName() + " has been defeated!");
+                game.wait(2);
                 break;
             }
 
-            double enemyDamage = enemy.attack();
-            double playerHealth = player.getHealth();
-            player.setHealth(playerHealth - enemyDamage);
-            System.out.println("The " + enemy.getName() + " attacks " + player.getName() + " for " + enemyDamage + " damage!");
+            enemyActionDecision(player, enemy);
+            game.wait(2);
 
             if (player.getHealth() <= 0) {
-                System.out.println(player.getName() + " has been defeated!");
+                game.show(player.getName() + " has been defeated!");
+                game.wait(2);
                 break;
             }
         }
     }
 
-    private static int playerAttack(Weapon weapon) {
-        if (weapon != null) {
-            int baseDamage = (int) (Math.random() * (weapon.getMaxDamage() - 100)) + 100; // Set minimum base damage to 100
+    public static void playerAttack(Player player, Enemy enemy) {
+        player.displayWeapons();
+        int weaponChoice = Integer.parseInt(game.ask("Enter the number of the weapon to attack with:"));
+        Weapon selectedWeapon = player.getWeapons().get(weaponChoice - 1);
+        player.equipWeapon(selectedWeapon);
+        int baseDamage = (int) (Math.random() * (selectedWeapon.getMaxDamage() - selectedWeapon.getMinDamage() + 1)) + selectedWeapon.getMinDamage();
+        double critRoll = Math.random();
+        int playerDamage;
 
-            System.out.println(baseDamage);
-            System.out.println((weapon.getMaxDamage() - 100) + 100);
-
-                return baseDamage;
-
+        if (critRoll <= selectedWeapon.getCritChance()) {
+            playerDamage = baseDamage + selectedWeapon.getCritDamage();
         } else {
-            return (int) (Math.random() * 10) + 1; // Simple random damage example if the player has no weapon
+            playerDamage = baseDamage;
+        }
+
+        enemy.takeDamage(playerDamage);
+        game.show(player.getName() + " hits the " + enemy.getName() + " for " + playerDamage + " damage!");
+
+
+    }
+
+    private static void enemyActionDecision(Player player, Enemy enemy) {
+        double healthPercentage = (double) enemy.getHealth() / enemy.getMaxHealth() * 100;
+        double random = Math.random() * 100;
+
+        if (enemy.getAmountHealingPotions() == 0) {
+            enemyAttack(player, enemy);
+        } else {
+            if (healthPercentage > 50) {
+                if (random < 25) {
+                    enemyHeal(enemy);
+                } else {
+                    enemyAttack(player, enemy);
+                }
+            } else if (healthPercentage <= 50 && healthPercentage > 1) {
+                if (random < 50) {
+                    enemyHeal(enemy);
+                } else {
+                    enemyAttack(player, enemy);
+                }
+            } else {
+                if (random < 45) {
+                    System.out.println("The enemy considers escaping!");
+                    if (Math.random() < 0.1) {
+                        System.out.println("The enemy successfully runs away!");
+                        // You may want to end the combat loop or take appropriate action
+                    } else {
+                        System.out.println("The enemy decides to stay and fight.");
+                        enemyAttack(player, enemy);
+                    }
+                } else {
+                    enemyHeal(enemy);
+                }
+            }
         }
     }
+
+    private static void enemyAttack(Player player, Enemy enemy){
+        if (enemy.getWeapon() == null) {
+            System.out.println("The enemy attacks with bare hands!");
+            double damage = (int) (Math.random() * 10) + 1; // Bare hands attack example
+            player.takeDamage(damage);
+            game.show("The enemy hits " + player.getName() + " for " + damage + " damage!");
+        } else {
+            Weapon enemyWeapon = enemy.getWeapon();
+            int baseDamage = (int) (Math.random() * (enemyWeapon.getMaxDamage() - enemyWeapon.getMinDamage() + 1)) + enemyWeapon.getMinDamage();
+            double critRoll = Math.random();
+            int enemyDamage;
+
+            if (critRoll <= enemyWeapon.getCritChance()) {
+                enemyDamage = baseDamage + enemyWeapon.getCritDamage();
+            } else {
+                enemyDamage = baseDamage;
+            }
+
+            player.takeDamage(enemyDamage);
+            game.show("The enemy hits " + player.getName() + " for " + enemyDamage + " damage with " + enemyWeapon.getName() + "!");
+        }
+    }
+
+    private static void playerHeal(Player player) {
+        player.displayPotions();
+        int potionChoice = Integer.parseInt(game.ask("Enter the number of the potion to heal with:"));
+        Potion selectedPotion = player.getPotions().get(potionChoice - 1);
+        System.out.println("Selected Potion" + selectedPotion);
+        player.equipPotion(selectedPotion);
+        System.out.println(ConsoleColors.RED + "equipped potion" + ConsoleColors.RESET);
+
+        double playerMaxHealth = player.getMaxHealth();
+        double amount = 0;
+        PotionsType potionsType = selectedPotion.getPotionsType();
+        switch (potionsType){
+            case LARGE_POT -> amount = playerMaxHealth;
+            case MEDIUM_POT -> amount = playerMaxHealth * 0.5;
+            case SMALL_POT -> amount = playerMaxHealth * 0.25;
+        }
+        double currentplayerHealth = player.getHealth();
+        double newPlayerHealth = currentplayerHealth + amount;
+
+        if(newPlayerHealth > playerMaxHealth){
+            newPlayerHealth = playerMaxHealth;
+        }
+
+        player.setHealth(newPlayerHealth);
+        player.removePotion(selectedPotion);
+        System.out.println("You healed yourself for " + amount + " !");
+
+        game.show(player.getName() + " heals with " + selectedPotion.getName());
+    }
+
+    public static void playerStrength(Player player){
+        player.displayPotions();
+        int potionChoice = Integer.parseInt(game.ask("Enter the number of the potion to heal with:"));
+        Potion selectedPotion = player.getPotions().get(potionChoice - 1);
+        System.out.println("Selected Potion" + selectedPotion);
+        player.equipPotion(selectedPotion);
+        System.out.println(ConsoleColors.RED + "equipped potion" + ConsoleColors.RESET);
+        double amountOfStrength = 0;
+        PotionsType potionsType = selectedPotion.getPotionsType();
+
+
+
+    }
+
+    private static void enemyHeal(Enemy enemy){
+    int potionAmount = enemy.getAmountHealingPotions();
+    double enemyMaxHealt = enemy.getMaxHealth();
+    double amount = 0;
+    double random = Math.random();
+
+    PotionsType potionsType;
+    if(random < 55){
+        potionsType = PotionsType.SMALL_POT;
+        amount = enemyMaxHealt * 0.25;
+    } else if (random < 90) {
+        potionsType = PotionsType.MEDIUM_POT;
+        amount = enemyMaxHealt * 0.5;
+    } else {
+        potionsType = PotionsType.LARGE_POT;
+        amount = enemyMaxHealt;
+    }
+
+
+    double currentEnemyHP = enemy.getHealth();
+    double newEnemyHP = currentEnemyHP + amount;
+
+    if (newEnemyHP > enemyMaxHealt){
+        newEnemyHP = enemyMaxHealt;
+    }
+    enemy.setHealth(newEnemyHP);
+
+        System.out.println(enemy.getName() + " healed for " + amount + " hp!");
+
+    }
+
 }

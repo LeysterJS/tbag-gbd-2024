@@ -1,6 +1,6 @@
 package de.tbag.gbd.player;
 
-import de.tbag.gbd.combat.Enemy;
+import de.tbag.gbd.potions.Potion;
 import de.tbag.gbd.combat.Weapon;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,20 +14,37 @@ import java.util.List;
 public class Player {
     private String name;
     private double health;
+    private double maxHealth;
     private int maxWeapons;
-    private int maxHealingPotions;
+    private int maxPotions;
     private List<Weapon> weapons;
-    private List<String> healingPotions;
+    private List<Potion> potions;
     private Weapon equippedWeapon;
+    private Potion equippedPotion;
 
 
-    public Player(String name, double health, int maxWeapons, int maxHealingPotions) {
+
+    public Player(String name, double health, int maxWeapons, int maxPotions) {
         this.name = name;
         this.health = health;
+        this.maxHealth = health;
         this.maxWeapons = maxWeapons;
-        this.maxHealingPotions = maxHealingPotions;
+        this.maxPotions = maxPotions;
         this.weapons = new ArrayList<>();
-        this.healingPotions = new ArrayList<>();
+        this.potions = new ArrayList<>();
+
+    }
+
+    public void addPotion(Potion potion){
+        if (potions.size() < maxPotions) {
+            potions.add(potion);
+        }else {
+            System.out.println("Cannot cary more Potions");
+        }
+    }
+
+    public void removePotion(Potion potion){
+        potions.remove(potion);
     }
 
     public void addWeapon(Weapon weapon) {
@@ -38,23 +55,27 @@ public class Player {
         }
     }
 
-    public void addHealingPotion(String potion) {
-        if (healingPotions.size() < maxHealingPotions) {
-            healingPotions.add(potion);
-        } else {
-            System.out.println("Cannot carry more healing potions.");
-        }
-    }
-
     public void displayWeapons() {
         System.out.println("Weapons in inventory:");
+        int i = 1;
         for (Weapon weapon : weapons) {
-            System.out.println(weapon.getName() + " | Type: " + weapon.getType() + " | Damage: " + weapon.getMinDamage() + " - " + weapon.getMaxDamage() +
+            System.out.println( i +". " + weapon.getName() + " | Type: " + weapon.getType() + " | Damage: " + weapon.getMinDamage() + " - " + weapon.getMaxDamage() +
                     " | Critical Damage: " + weapon.getCritDamage() + " | Critical Chance: " + weapon.getCritChance());
+            i++;
         }
     }
 
-    public void takeDamage() {
+    public void displayPotions(){
+        System.out.println("Potions in inventory: ");
+        int i = 1;
+        for (Potion potions : potions) {
+            System.out.println(i + ". " + potions.getName() + " | Type: " + potions.getPotionsType() + " | Heal: " + potions.getHeal() + ".");
+        }
+
+    }
+
+    public void takeDamage(double damage) {
+        health = health - damage;
 
     }
 
@@ -66,12 +87,26 @@ public class Player {
         this.health = health;
     }
 
+    public double getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(double maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
     public Weapon getEquippedWeapon() {
         return equippedWeapon;
     }
 
+    public Potion getEquippedPotion(){
+     return equippedPotion;
+    }
     public void equipWeapon(Weapon weapon) {
         this.equippedWeapon = weapon;
+    }
+    public void equipPotion(Potion potion){
+        this.equippedPotion = potion;
     }
 
     public String getName() {
@@ -90,12 +125,12 @@ public class Player {
         this.maxWeapons = maxWeapons;
     }
 
-    public int getMaxHealingPotions() {
-        return maxHealingPotions;
+    public int getMaxPotions() {
+        return maxPotions;
     }
 
-    public void setMaxHealingPotions(int maxHealingPotions) {
-        this.maxHealingPotions = maxHealingPotions;
+    public void setMaxPotions(int maxPotions) {
+        this.maxPotions = maxPotions;
     }
 
     public List<Weapon> getWeapons() {
@@ -106,17 +141,22 @@ public class Player {
         this.weapons = weapons;
     }
 
-    public List<String> getHealingPotions() {
-        return healingPotions;
+    public List<Potion> getPotions() {
+        return potions;
     }
 
-    public void setHealingPotions(List<String> healingPotions) {
-        this.healingPotions = healingPotions;
+    public void setPotions(List<Potion> potions) {
+        this.potions = potions;
     }
 
     public void setEquippedWeapon(Weapon equippedWeapon) {
         this.equippedWeapon = equippedWeapon;
     }
+
+    public void setEquippedPotions(Potion equippedPotion){
+        this.equippedPotion = equippedPotion;
+    }
+
 }
 
 

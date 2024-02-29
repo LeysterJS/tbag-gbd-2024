@@ -9,38 +9,25 @@ import de.tbag.gbd.combat.Weapon;
 
 public class Enemy {
     private String name;
-    private int hp;
+    private double health;
+    private double maxHealth;
     private Weapon weapon;
+    private int amountHealingPotions;
 
-    public Enemy(String name, int hp, Weapon weapon) {
+    public Enemy(String name, double health, Weapon weapon, int amountHealingPotions) {
         this.name = name;
-        this.hp = hp;
+        this.health = health;
+        this.maxHealth = health;
         this.weapon = weapon;
-    }
-
-
-    public int attack() {
-        if (weapon != null) {
-            int baseDamage = (int) (Math.random() * (weapon.getMaxDamage() - weapon.getMinDamage() + 1)) + weapon.getMinDamage();
-            double critRoll = Math.random();
-            if (critRoll <= weapon.getCritChance()) {
-                return baseDamage + weapon.getCritDamage();
-            } else {
-                return baseDamage;
-            }
-        } else {
-            return (int) (Math.random() * 10) + 1; // Simple random damage example if the enemy has no weapon
-        }
+        this.amountHealingPotions = amountHealingPotions;
     }
 
     public void takeDamage(int damage) {
-        hp -= damage;
-        if (hp < 0) {
-            hp = 0;
+        health -= damage;
+        if (health < 0) {
+            health = 0;
         }
     }
-
-    // Getters and setters for name, hp, weapon
 
 
     public String getName() {
@@ -51,12 +38,20 @@ public class Enemy {
         this.name = name;
     }
 
-    public int getHp() {
-        return hp;
+    public double getHealth() {
+        return health;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
+    public void setHealth(double hp) {
+        this.health = hp;
+    }
+
+    public double getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(double hp) {
+        this.maxHealth = hp;
     }
 
     public Weapon getWeapon() {
@@ -66,4 +61,13 @@ public class Enemy {
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
+
+    public int getAmountHealingPotions(){
+        return amountHealingPotions;
+    }
+
+    public void setAmountHealingPotions(int amountHealingPotions){
+        this.amountHealingPotions = amountHealingPotions;
+    }
+
 }

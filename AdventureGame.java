@@ -18,10 +18,14 @@ public class AdventureGame {
     public void show(String message) {
         System.out.println(message);
     }
-
     public String ask(String question) {
         System.out.print(question + " ");
         return scanner.nextLine();
+    }
+    public void wait(int seconds) throws InterruptedException {
+        int millisec = seconds*1000;
+        Thread.sleep(millisec);
+
     }
 
 }
