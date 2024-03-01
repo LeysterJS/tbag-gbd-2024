@@ -16,8 +16,6 @@ public class Potion {
     private String name;
     private PotionsType potionsType;
     private int heal;
-    private static Player player;
-    private static Enemy enemy;
 
 
     public Potion(String name, int heal ,PotionsType potionsType) {

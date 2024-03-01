@@ -1,6 +1,7 @@
 package de.tbag.gbd.combat;
 
 import de.tbag.gbd.AdventureGame;
+import de.tbag.gbd.BigTexts;
 import de.tbag.gbd.cosmetic.ConsoleColors;
 import de.tbag.gbd.player.Player;
 import de.tbag.gbd.potions.Potion;
@@ -15,19 +16,24 @@ import de.tbag.gbd.potions.PotionsType;
 public class Combat {
     private static AdventureGame game;
     private static Potion potion;
+    private static Player player;
 
     public Combat(AdventureGame adventureGame) {
         this.game = adventureGame;
     }
 
     public static void engageInCombat(Player player, Enemy enemy) throws InterruptedException {
+
+        BigTexts bigTexts = new BigTexts();
+        bigTexts.startBattle();
+
         System.out.println("A wild " + enemy.getName() + " appears!");
 
         while (player.getHealth() > 0 && enemy.getHealth() > 0) {
             game.show(player.getName() + "'s turn:");
-            game.show(ConsoleColors.GREEN + "1. Attack with a weapon" + ConsoleColors.RESET);
-            game.show(ConsoleColors.GREEN + "2. Heal with a potion" + ConsoleColors.RESET);
-            game.show(ConsoleColors.GREEN + "3. Run away" + ConsoleColors.RESET);
+            game.show(ConsoleColors.GREEN + "1."+ ConsoleColors.RESET +" Attack with a weapon");
+            game.show(ConsoleColors.YELLOW + "2."+ ConsoleColors.RESET +" Heal with a potion");
+            game.show(ConsoleColors.RED + "3."+ ConsoleColors.RESET + " Run away");
 
             int choice = Integer.parseInt(game.ask("Enter the number of your choice:"));
             switch (choice) {
@@ -46,7 +52,9 @@ public class Combat {
             }
 
             if (enemy.getHealth() <= 0) {
-                game.show("The " + enemy.getName() + " has been defeated!");
+                player.addMoney((int) (enemy.getMaxHealth()/10));
+                game.show("The " + enemy.getName() + " has been defeated and you earned " + player.getMoney() + " Money");
+                game.show("You now have " + player.getMoney() + " Money");
                 game.wait(2);
                 break;
             }

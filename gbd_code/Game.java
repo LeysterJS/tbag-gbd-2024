@@ -1,10 +1,12 @@
 package de.tbag.gbd.gbd_code;
 
 import de.tbag.gbd.AdventureGame;
+import de.tbag.gbd.BigTexts;
 import de.tbag.gbd.combat.Combat;
 import de.tbag.gbd.combat.Enemy;
 import de.tbag.gbd.combat.Weapon;
 import de.tbag.gbd.combat.WeaponType;
+import de.tbag.gbd.misc.Shop;
 import de.tbag.gbd.player.Player;
 import de.tbag.gbd.potions.Potion;
 import de.tbag.gbd.potions.PotionsType;
@@ -19,9 +21,11 @@ public class Game {
     private AdventureGame game;
     private Combat combat;
     public String playerName = "";
+    private static Enemy enemy;
 
     private static Potion potions;
     private static PotionsType healSize;
+    Shop shop = new Shop();
 
     public Game(AdventureGame adventureGame) {
         this.game = adventureGame;
@@ -45,7 +49,7 @@ public class Game {
 
         if (direction.equals("left")) {
             game.show("You encounter a friendly elf. He gives you a Deutsches Langschwert.");
-             player.equipWeapon(deutschesLangschwert);
+            player.equipWeapon(deutschesLangschwert);
             player.addWeapon(deutschesLangschwert);
             player.addPotion(smallHeal);
             player.displayWeapons();
@@ -55,9 +59,15 @@ public class Game {
             // Simulate combat between the player and the enemy
             combat.engageInCombat(player, enemy);
 
+            shop.newShop("sasmuels");
+
 
         } else if (direction.equals("right")) {
             game.show("You run into a troll. He takes all your gold!");
+            Enemy enemy = new Enemy("Goblin", 100, rustySword,1);
+            enemy.takeGold(5, player);
+            int playerGold = player.getMoney();
+            System.out.println("Gold: " + playerGold);
             // Handle right direction scenario
         } else {
             game.show("That's not a valid direction!");

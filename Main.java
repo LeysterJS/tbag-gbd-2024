@@ -13,6 +13,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+
+        BigTexts bigTexts = new BigTexts();
+        bigTexts.Loading();
+
         Scanner inputScanner = new Scanner(System.in);
         System.out.println("Enter your name:");
         String playerName = inputScanner.nextLine();

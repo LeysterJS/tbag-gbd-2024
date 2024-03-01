@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Player {
     private String name;
+    private int money;
     private double health;
     private double maxHealth;
     private int maxWeapons;
@@ -33,6 +34,10 @@ public class Player {
         this.weapons = new ArrayList<>();
         this.potions = new ArrayList<>();
 
+    }
+
+    public void addMoney(int amountToAdd){
+        money = money + amountToAdd;
     }
 
     public void addPotion(Potion potion){
@@ -133,6 +138,13 @@ public class Player {
         this.maxPotions = maxPotions;
     }
 
+    public int getMoney(){
+        return money;
+    }
+    public void setMoney(int money){
+        this.money = money;
+    }
+
     public List<Weapon> getWeapons() {
         return weapons;
     }
@@ -156,6 +168,7 @@ public class Player {
     public void setEquippedPotions(Potion equippedPotion){
         this.equippedPotion = equippedPotion;
     }
+
 
 }
 

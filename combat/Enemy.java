@@ -1,5 +1,5 @@
 package de.tbag.gbd.combat;
-import de.tbag.gbd.combat.Weapon;
+import de.tbag.gbd.player.Player;
 
 /**
  * @author Lukas Knappich | Samuel Ratzel
@@ -13,8 +13,9 @@ public class Enemy {
     private double maxHealth;
     private Weapon weapon;
     private int amountHealingPotions;
+    private static Player player;
 
-    public Enemy(String name, double health, Weapon weapon, int amountHealingPotions) {
+    public Enemy(String name, int health, Weapon weapon, int amountHealingPotions) {
         this.name = name;
         this.health = health;
         this.maxHealth = health;
@@ -29,6 +30,17 @@ public class Enemy {
         }
     }
 
+    public void takeGold(int amount, Player player){
+
+        int playerMoney = player.getMoney();
+        int newMoney = playerMoney - amount;
+        if (newMoney < 0){
+            player.setMoney(0);
+        }
+        else{
+            player.setMoney(newMoney);
+        }
+    }
 
     public String getName() {
         return name;
@@ -43,15 +55,15 @@ public class Enemy {
     }
 
     public void setHealth(double hp) {
-        this.health = hp;
+        this.health = health;
     }
 
     public double getMaxHealth() {
         return maxHealth;
     }
 
-    public void setMaxHealth(double hp) {
-        this.maxHealth = hp;
+    public void setMaxHealth(int health) {
+        this.maxHealth = health;
     }
 
     public Weapon getWeapon() {
