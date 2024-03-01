@@ -21,4 +21,5 @@ public class ShopItem {
     public String getName() {
         return this.weapon.getName();
     }
+
 }

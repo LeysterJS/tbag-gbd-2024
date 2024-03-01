@@ -1,6 +1,7 @@
 package de.tbag.gbd.player;
 
 import de.tbag.gbd.cosmetic.ConsoleColors;
+import de.tbag.gbd.misc.ShopItem;
 import de.tbag.gbd.potions.Potion;
 import de.tbag.gbd.combat.Weapon;
 import java.util.ArrayList;
@@ -52,17 +53,24 @@ public class Player {
             System.out.println("Cannot cary more Potions");
         }
     }
+    public void removeItem(ShopItem item) {
+        System.out.println("Before removing a weapon: " + weapons.size() + "/" + maxWeapons);
+        weapons.remove(item);
+        System.out.println("After removing a weapon: " + weapons.size() + "/" + maxWeapons);
+    }
 
     public void removePotion(Potion potion){
         potions.remove(potion);
     }
 
     public void addWeapon(Weapon weapon) {
+        System.out.println("Before adding a weapon: " + weapons.size() + "/" + maxWeapons);
         if (weapons.size() < maxWeapons) {
             weapons.add(weapon);
         } else {
             System.out.println("Cannot carry more weapons.");
         }
+        System.out.println("After adding a weapon: " + weapons.size() + "/" + maxWeapons);
     }
 
     public void displayWeapons() {

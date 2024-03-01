@@ -20,10 +20,11 @@ import java.util.Scanner;
 
 public class Shop {
 
-    private List<ShopItem> shopItems = new ArrayList<>();
+    private List<ShopItem> shopItems;
     private int maxItems;
     private String auswahl;
     private Player player;
+    private int shopSize;
 
 
     public void newShop(String shopName) {
@@ -74,9 +75,10 @@ public class Shop {
 
 
     }
-    public Shop(Player player, int maxItems) {
+    public Shop(Player player, int shopSize) {
         this.player = player;
-        this.maxItems = maxItems;
+        this.shopSize = shopSize;
+        this.shopItems = new ArrayList<>();
     }
 
     public void addItem(ShopItem item) {
@@ -104,6 +106,9 @@ public class Shop {
         for (ShopItem item : shopItems) {
             System.out.println(item.getName() + ": " + item.getCost());
         }
+    }
+    public ShopItem getItem(int index) {
+        return shopItems.get(index);
     }
 }
 

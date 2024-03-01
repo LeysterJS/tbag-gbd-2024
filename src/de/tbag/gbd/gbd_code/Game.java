@@ -22,11 +22,10 @@ public class Game {
     private Combat combat;
     public String playerName = "";
     private static Enemy enemy;
-
     private static Potion potions;
     private static PotionsType healSize;
-    Player player = new Player(playerName, 100, 4, 3);
-    Shop shop = new Shop(player,3);
+    Player player;
+    Shop shop;
 
     public Game(AdventureGame adventureGame) {
         this.game = adventureGame;
@@ -44,7 +43,9 @@ public class Game {
 
 
     public void start(String playerName) throws InterruptedException {
-        this.playerName = playerName; // Update the playerName field
+        this.playerName = playerName;
+        Player player = new Player(playerName, 100, 10, 3);
+        Shop shop = new Shop(player,3);
         player.setName(playerName);
         player.showStats();
         game.show("Welcome to the Adventure Game!");
@@ -66,10 +67,29 @@ public class Game {
             combat.engageInCombat(player, enemy);
 
             shop.newShop("sasmuels");
+            shop.displayItems();
             shop.addItem(item1);
             shop.addItem(item2);
             shop.buyItem(item1);
             shop.buyItem(item2);
+
+            boolean shopping = true;
+            while (shopping) {
+                shop.displayItems();
+                String choice = game.ask("Enter the number of the item you want to buy, or 'exit' to leave the shop:");
+                if (choice.equalsIgnoreCase("exit")) {
+                    shopping = false;
+                } else {
+                    try {
+                        shop.displayItems();
+                        int itemNumber = Integer.parseInt(choice);
+                        ShopItem chosenItem = shop.getItem(itemNumber - 1); // Subtract 1 because list is 0-indexed
+                        shop.buyItem(chosenItem);
+                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        game.show("That's not a valid choice. Please enter a number corresponding to an item, or 'exit' to leave the shop.");
+                    }
+                }
+            }
 
 
         } else if (direction.equals("right")) {
