@@ -4,6 +4,7 @@ import de.tbag.gbd.combat.Combat;
 import de.tbag.gbd.combat.Enemy;
 import de.tbag.gbd.combat.Weapon;
 import de.tbag.gbd.misc.Shop;
+import de.tbag.gbd.misc.ShopItem;
 import de.tbag.gbd.player.Player;
 import de.tbag.gbd.potions.Potion;
 import de.tbag.gbd.potions.PotionsType;
@@ -24,7 +25,8 @@ public class Game {
 
     private static Potion potions;
     private static PotionsType healSize;
-    Shop shop = new Shop();
+    Player player = new Player(playerName, 100, 4, 3);
+    Shop shop = new Shop(player,3);
 
     public Game(AdventureGame adventureGame) {
         this.game = adventureGame;
@@ -34,11 +36,15 @@ public class Game {
     Weapon deutschesLangschwert = new Weapon("Deutsches Langschwert", WeaponType.LONG_RANGE, 200, 400, 300, 0.3);
     Weapon dolch = new Weapon("Dolch", WeaponType.SHORT_RANGE, 10, 15, 20, 0.1);
     Weapon rustySword = new Weapon("Rusty Sword", WeaponType.SHORT_RANGE , 10, 20, 15, 0.2);
-    Player player = new Player(playerName, 100, 2, 3);
+
     Potion smallHeal = new Potion("small potion", 25, PotionsType.SMALL_POT);
+
+    ShopItem item1 = new ShopItem(deutschesLangschwert, 2);
+    ShopItem item2 = new ShopItem(dolch, 1);
 
 
     public void start(String playerName) throws InterruptedException {
+        this.playerName = playerName; // Update the playerName field
         player.setName(playerName);
         player.showStats();
         game.show("Welcome to the Adventure Game!");
@@ -60,6 +66,10 @@ public class Game {
             combat.engageInCombat(player, enemy);
 
             shop.newShop("sasmuels");
+            shop.addItem(item1);
+            shop.addItem(item2);
+            shop.buyItem(item1);
+            shop.buyItem(item2);
 
 
         } else if (direction.equals("right")) {

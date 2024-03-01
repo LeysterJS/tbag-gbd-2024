@@ -14,6 +14,7 @@ public class Weapon {
     private int critDamage;
     private double critChance;
 
+
     public Weapon(String name, WeaponType weaponType, int minDamage, int maxDamage, int critDamage, double critChance) {
         this.name = name;
         this.weaponType = weaponType;
@@ -21,7 +22,9 @@ public class Weapon {
         this.maxDamage = maxDamage;
         this.critDamage = critDamage;
         this.critChance = critChance;
+
     }
+
 
     public String getName() {
         return name;

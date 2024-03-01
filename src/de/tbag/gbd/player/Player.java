@@ -89,6 +89,10 @@ public class Player {
 
     }
 
+    public void removeMoney(int amount) {
+        this.money -= amount;
+    }
+
     public double getHealth() {
         return health;
     }
