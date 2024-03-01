@@ -1,8 +1,4 @@
-package de.tbag.gbd.potions;
-
-import de.tbag.gbd.combat.Enemy;
-import de.tbag.gbd.cosmetic.ConsoleColors;
-import de.tbag.gbd.player.Player;
+package gbd.potions;
 
 /**
  *

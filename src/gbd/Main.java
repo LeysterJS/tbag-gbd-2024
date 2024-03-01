@@ -1,7 +1,7 @@
-package de.tbag.gbd;
+package gbd;
 
-import de.tbag.gbd.player.Player;
-import de.tbag.gbd.gbd_code.Game;
+import gbd.player.Player;
+import gbd.gbd_code.Game;
 
 import java.util.Scanner;
 

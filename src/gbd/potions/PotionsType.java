@@ -1,4 +1,4 @@
-package de.tbag.gbd.potions;
+package gbd.potions;
 
 /**
  *

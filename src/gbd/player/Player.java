@@ -1,7 +1,7 @@
-package de.tbag.gbd.player;
+package gbd.player;
 
-import de.tbag.gbd.potions.Potion;
-import de.tbag.gbd.combat.Weapon;
+import gbd.potions.Potion;
+import gbd.combat.Weapon;
 import java.util.ArrayList;
 import java.util.List;
 

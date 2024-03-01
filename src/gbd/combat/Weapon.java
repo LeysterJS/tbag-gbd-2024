@@ -1,4 +1,4 @@
-package de.tbag.gbd.combat;
+package gbd.combat;
 
 /**
  * @author Lukas Knappich | Samuel Ratzel
