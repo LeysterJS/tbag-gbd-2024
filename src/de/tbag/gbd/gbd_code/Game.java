@@ -1,14 +1,14 @@
-package gbd.gbd_code;
+package de.tbag.gbd.gbd_code;
 
-import gbd.AdventureGame;
-import gbd.combat.Combat;
-import gbd.combat.Enemy;
-import gbd.combat.Weapon;
-import gbd.combat.WeaponType;
-import gbd.misc.Shop;
-import gbd.player.Player;
-import gbd.potions.Potion;
-import gbd.potions.PotionsType;
+import de.tbag.gbd.combat.Combat;
+import de.tbag.gbd.combat.Enemy;
+import de.tbag.gbd.combat.Weapon;
+import de.tbag.gbd.misc.Shop;
+import de.tbag.gbd.player.Player;
+import de.tbag.gbd.potions.Potion;
+import de.tbag.gbd.potions.PotionsType;
+import de.tbag.gbd.AdventureGame;
+import de.tbag.gbd.combat.WeaponType;
 
 /**
  * @author Samuel Ratzel | Lukas Knappich | [UR NAME]
@@ -40,6 +40,7 @@ public class Game {
 
     public void start(String playerName) throws InterruptedException {
         player.setName(playerName);
+        player.showStats();
         game.show("Welcome to the Adventure Game!");
         player.addWeapon(dolch);
         game.wait(2);

@@ -1,4 +1,4 @@
-package gbd;
+package de.tbag.gbd;
 
 import java.util.Scanner;
 

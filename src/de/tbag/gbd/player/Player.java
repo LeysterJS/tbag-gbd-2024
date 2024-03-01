@@ -1,7 +1,8 @@
-package gbd.player;
+package de.tbag.gbd.player;
 
-import gbd.potions.Potion;
-import gbd.combat.Weapon;
+import de.tbag.gbd.cosmetic.ConsoleColors;
+import de.tbag.gbd.potions.Potion;
+import de.tbag.gbd.combat.Weapon;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,10 @@ public class Player {
 
     public void addMoney(int amountToAdd){
         money = money + amountToAdd;
+    }
+
+    public void showStats(){
+        System.out.println( ConsoleColors.GREEN + "Name: " + name + ConsoleColors.RED + " | Health: " + health + ConsoleColors.YELLOW + " | Money: " + money + ConsoleColors.RESET);
     }
 
     public void addPotion(Potion potion){

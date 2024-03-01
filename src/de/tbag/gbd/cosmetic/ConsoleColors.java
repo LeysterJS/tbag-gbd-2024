@@ -1,4 +1,4 @@
-package gbd.cosmetic;
+package de.tbag.gbd.cosmetic;
 
 /**
  *

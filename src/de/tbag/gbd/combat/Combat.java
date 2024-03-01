@@ -1,11 +1,11 @@
-package gbd.combat;
+package de.tbag.gbd.combat;
 
-import gbd.AdventureGame;
-import gbd.BigTexts;
-import gbd.cosmetic.ConsoleColors;
-import gbd.player.Player;
-import gbd.potions.Potion;
-import gbd.potions.PotionsType;
+import de.tbag.gbd.cosmetic.ConsoleColors;
+import de.tbag.gbd.player.Player;
+import de.tbag.gbd.AdventureGame;
+import de.tbag.gbd.BigTexts;
+import de.tbag.gbd.potions.Potion;
+import de.tbag.gbd.potions.PotionsType;
 
 /**
  * @author Lukas Knappich | Samuel Ratzel
@@ -53,8 +53,8 @@ public class Combat {
 
             if (enemy.getHealth() <= 0) {
                 player.addMoney((int) (enemy.getMaxHealth()/10));
-                game.show("The " + enemy.getName() + " has been defeated and you earned " + player.getMoney() + " Money");
-                game.show("You now have " + player.getMoney() + " Money");
+                game.show("The " + enemy.getName() + " has been defeated and you earned " + ConsoleColors.YELLOW + player.getMoney() +  ConsoleColors.RESET + " Money");
+                game.show("You now have " + ConsoleColors.YELLOW + player.getMoney() + ConsoleColors.RESET + " Money");
                 game.wait(2);
                 break;
             }

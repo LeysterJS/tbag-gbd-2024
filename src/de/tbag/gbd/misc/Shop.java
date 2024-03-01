@@ -1,11 +1,11 @@
-package gbd.misc;
+package de.tbag.gbd.misc;
 
-import gbd.BigTexts;
-import gbd.combat.Weapon;
-import gbd.combat.WeaponType;
-import gbd.cosmetic.ConsoleColors;
-import gbd.player.Player;
-import gbd.potions.Potion;
+import de.tbag.gbd.player.Player;
+import de.tbag.gbd.BigTexts;
+import de.tbag.gbd.combat.Weapon;
+import de.tbag.gbd.combat.WeaponType;
+import de.tbag.gbd.cosmetic.ConsoleColors;
+import de.tbag.gbd.potions.Potion;
 
 import java.util.List;
 import java.util.Random;
