@@ -1,15 +1,15 @@
-package de.tbag.gbd.gbd_code;
+package tbag.gbd.gbd_code;
 
-import de.tbag.gbd.combat.Combat;
-import de.tbag.gbd.combat.Enemy;
-import de.tbag.gbd.combat.Weapon;
-import de.tbag.gbd.misc.Shop;
-import de.tbag.gbd.misc.ShopItem;
-import de.tbag.gbd.player.Player;
-import de.tbag.gbd.potions.Potion;
-import de.tbag.gbd.potions.PotionsType;
-import de.tbag.gbd.AdventureGame;
-import de.tbag.gbd.combat.WeaponType;
+import tbag.gbd.combat.Combat;
+import tbag.gbd.combat.Enemy;
+import tbag.gbd.combat.Weapon;
+import tbag.gbd.misc.Shop;
+import tbag.gbd.misc.ShopItem;
+import tbag.gbd.player.Player;
+import tbag.gbd.potions.Potion;
+import tbag.gbd.potions.PotionsType;
+import tbag.gbd.AdventureGame;
+import tbag.gbd.combat.WeaponType;
 
 /**
  * @author Samuel Ratzel | Lukas Knappich | [UR NAME]

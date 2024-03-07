@@ -1,5 +1,5 @@
-package de.tbag.gbd.combat;
-import de.tbag.gbd.player.Player;
+package tbag.gbd.combat;
+import tbag.gbd.player.Player;
 
 /**
  * @author Lukas Knappich | Samuel Ratzel

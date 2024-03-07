@@ -1,6 +1,6 @@
-package de.tbag.gbd;
+package tbag.gbd;
 
-import de.tbag.gbd.cosmetic.ConsoleColors;
+import tbag.gbd.cosmetic.ConsoleColors;
 
 /**
  * @author Samuel Ratzel

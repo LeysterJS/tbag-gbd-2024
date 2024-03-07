@@ -1,12 +1,10 @@
-package de.tbag.gbd.misc;
+package tbag.gbd.misc;
 
-import de.tbag.gbd.gbd_code.Game;
-import de.tbag.gbd.player.Player;
-import de.tbag.gbd.BigTexts;
-import de.tbag.gbd.combat.Weapon;
-import de.tbag.gbd.combat.WeaponType;
-import de.tbag.gbd.cosmetic.ConsoleColors;
-import de.tbag.gbd.potions.Potion;
+import tbag.gbd.gbd_code.Game;
+import tbag.gbd.player.Player;
+import tbag.gbd.BigTexts;
+
+import tbag.gbd.cosmetic.ConsoleColors;
 
 import java.util.ArrayList;
 import java.util.List;

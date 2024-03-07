@@ -1,4 +1,4 @@
-package de.tbag.gbd.combat;
+package tbag.gbd.combat;
 
 /**
  * @author Samuel Ratzel

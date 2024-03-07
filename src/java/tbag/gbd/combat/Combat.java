@@ -1,11 +1,11 @@
-package de.tbag.gbd.combat;
+package tbag.gbd.combat;
 
-import de.tbag.gbd.cosmetic.ConsoleColors;
-import de.tbag.gbd.player.Player;
-import de.tbag.gbd.AdventureGame;
-import de.tbag.gbd.BigTexts;
-import de.tbag.gbd.potions.Potion;
-import de.tbag.gbd.potions.PotionsType;
+import tbag.gbd.cosmetic.ConsoleColors;
+import tbag.gbd.player.Player;
+import tbag.gbd.AdventureGame;
+import tbag.gbd.BigTexts;
+import tbag.gbd.potions.Potion;
+import tbag.gbd.potions.PotionsType;
 
 /**
  * @author Lukas Knappich | Samuel Ratzel

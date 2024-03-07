@@ -1,9 +1,9 @@
-package de.tbag.gbd.player;
+package tbag.gbd.player;
 
-import de.tbag.gbd.cosmetic.ConsoleColors;
-import de.tbag.gbd.misc.ShopItem;
-import de.tbag.gbd.potions.Potion;
-import de.tbag.gbd.combat.Weapon;
+import tbag.gbd.cosmetic.ConsoleColors;
+import tbag.gbd.misc.ShopItem;
+import tbag.gbd.potions.Potion;
+import tbag.gbd.combat.Weapon;
 import java.util.ArrayList;
 import java.util.List;
 

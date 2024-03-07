@@ -1,6 +1,6 @@
-package de.tbag.gbd.misc;
+package tbag.gbd.misc;
 
-import de.tbag.gbd.combat.Weapon;
+import tbag.gbd.combat.Weapon;
 
 public class ShopItem {
     private int stock;
