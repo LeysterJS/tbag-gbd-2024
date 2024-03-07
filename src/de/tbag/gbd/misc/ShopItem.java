@@ -3,12 +3,14 @@ package de.tbag.gbd.misc;
 import de.tbag.gbd.combat.Weapon;
 
 public class ShopItem {
+    private int stock;
     private Weapon weapon;
     private int cost;
 
-    public ShopItem(Weapon weapon, int cost) {
+    public ShopItem(Weapon weapon, int cost, int stock) {
         this.weapon = weapon;
         this.cost = cost;
+        this.stock = stock;
     }
 
     public Weapon getWeapon() {
@@ -20,6 +22,16 @@ public class ShopItem {
     }
     public String getName() {
         return this.weapon.getName();
+    }
+
+    public int getStock() {
+        return this.stock;
+    }
+
+    public void decreaseStock() {
+        if (stock > 0) {
+            stock--;
+        }
     }
 
 }

@@ -38,8 +38,7 @@ public class Game {
 
     Potion smallHeal = new Potion("small potion", 25, PotionsType.SMALL_POT);
 
-    ShopItem item1 = new ShopItem(deutschesLangschwert, 2);
-    ShopItem item2 = new ShopItem(dolch, 1);
+    ShopItem item1 = new ShopItem(deutschesLangschwert, 2,1);
 
 
     public void start(String playerName) throws InterruptedException {
@@ -67,29 +66,9 @@ public class Game {
             combat.engageInCombat(player, enemy);
 
             shop.newShop("sasmuels");
-            shop.displayItems();
             shop.addItem(item1);
-            shop.addItem(item2);
-            shop.buyItem(item1);
-            shop.buyItem(item2);
+            shop.exitShop();
 
-            boolean shopping = true;
-            while (shopping) {
-                shop.displayItems();
-                String choice = game.ask("Enter the number of the item you want to buy, or 'exit' to leave the shop:");
-                if (choice.equalsIgnoreCase("exit")) {
-                    shopping = false;
-                } else {
-                    try {
-                        shop.displayItems();
-                        int itemNumber = Integer.parseInt(choice);
-                        ShopItem chosenItem = shop.getItem(itemNumber - 1); // Subtract 1 because list is 0-indexed
-                        shop.buyItem(chosenItem);
-                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                        game.show("That's not a valid choice. Please enter a number corresponding to an item, or 'exit' to leave the shop.");
-                    }
-                }
-            }
 
 
         } else if (direction.equals("right")) {

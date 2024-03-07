@@ -1,5 +1,6 @@
 package de.tbag.gbd.misc;
 
+import de.tbag.gbd.gbd_code.Game;
 import de.tbag.gbd.player.Player;
 import de.tbag.gbd.BigTexts;
 import de.tbag.gbd.combat.Weapon;
@@ -25,6 +26,8 @@ public class Shop {
     private String auswahl;
     private Player player;
     private int shopSize;
+    private Game game;
+
 
 
     public void newShop(String shopName) {
@@ -82,7 +85,7 @@ public class Shop {
     }
 
     public void addItem(ShopItem item) {
-        if (shopItems.size() < maxItems) {
+        if (shopItems.size() < shopSize) {
             shopItems.add(item);
         } else {
             System.out.println("Cannot carry more items.");
@@ -90,18 +93,45 @@ public class Shop {
     }
 
     public void buyItem(ShopItem item) {
-        if (player.getMoney() >= item.getCost() && player.getWeapons().size() < player.getMaxWeapons()) {
-            player.addWeapon(item.getWeapon());
-            player.removeMoney(item.getCost());
-        } else {
-            if(player.getMoney() < item.getCost()) {
-                System.out.println("You do not have enough money to buy this item.");
+        if (item.getStock() > 0) {
+            if (player.getMoney() >= item.getCost() && player.getWeapons().size() < player.getMaxWeapons()) {
+                player.addWeapon(item.getWeapon());
+                player.removeMoney(item.getCost());
+                item.decreaseStock();
+            } else {
+                if(player.getMoney() < item.getCost()) {
+                    System.out.println("You do not have enough money to buy this item.");
+                }
+                if(player.getWeapons().size() >= player.getMaxWeapons()) {
+                    System.out.println("You cannot carry any more weapons.");
+                }
             }
-            if(player.getWeapons().size() >= player.getMaxWeapons()) {
-                System.out.println("You cannot carry any more weapons.");
+        } else {
+            System.out.println("This item is no longer available.");
+        }
+    }
+
+    public void exitShop() {
+        boolean shopping = true;
+        Scanner scanner = new Scanner(System.in);
+        while (shopping) {
+            displayItems();
+            System.out.println("Enter the number of the item you want to buy, or 'exit' to leave the shop:");
+            String choice = scanner.nextLine();
+            try {
+                int itemNumber = Integer.parseInt(choice);
+                ShopItem chosenItem = getItem(itemNumber - 1); // Subtract 1 because list is 0-indexed
+                buyItem(chosenItem);
+            } catch (NumberFormatException e) {
+                if (choice.equals("exit")) {
+                    shopping = false;
+                } else {
+                    System.out.println("That's not a valid choice. Please enter a number corresponding to an item, or 'exit' to leave the shop.");
+                }
             }
         }
     }
+
     public void displayItems() {
         for (ShopItem item : shopItems) {
             System.out.println(item.getName() + ": " + item.getCost());
