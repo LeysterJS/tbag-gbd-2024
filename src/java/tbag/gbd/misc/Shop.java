@@ -1,5 +1,6 @@
 package tbag.gbd.misc;
 
+import tbag.gbd.debug.Debug;
 import tbag.gbd.gbd_code.Game;
 import tbag.gbd.player.Player;
 import tbag.gbd.BigTexts;
@@ -25,11 +26,17 @@ public class Shop {
     private Player player;
     private int shopSize;
     private Game game;
+    private Debug debug = new Debug();
+    private Scanner shop;
 
-
+    public Shop(Player player, int shopSize, Scanner scanner) {
+        this.player = player;
+        this.shopSize = shopSize;
+        this.shopItems = new ArrayList<>();
+        this.shop = scanner;
+    }
 
     public void newShop(String shopName) {
-        shopItems.clear();
         BigTexts bigTexts = new BigTexts();
 
         Scanner shop = new Scanner(System.in);
@@ -77,13 +84,10 @@ public class Shop {
 
 
     }
-    public Shop(Player player, int shopSize) {
-        this.player = player;
-        this.shopSize = shopSize;
-        this.shopItems = new ArrayList<>();
-    }
 
     public void addItem(ShopItem item) {
+        debug.message("Adding item to shop.");
+
         if (shopItems.size() < shopSize) {
             shopItems.add(item);
         } else {
@@ -114,7 +118,6 @@ public class Shop {
         boolean shopping = true;
         Scanner scanner = new Scanner(System.in);
         while (shopping) {
-            displayItems();
             System.out.println("Enter the number of the item you want to buy, or 'exit' to leave the shop:");
             String choice = scanner.nextLine();
             try {
@@ -132,13 +135,22 @@ public class Shop {
     }
 
     public void displayItems() {
-        for (ShopItem item : shopItems) {
-            System.out.println("deine items");
-            System.out.println(item.getName() + ": " + item.getCost());
+        if (shopItems.isEmpty()) {
+            System.out.println("The shop is currently empty.");
+        } else {
+            System.out.println("Here are the items available in the shop:");
+            for (ShopItem item : shopItems) {
+                System.out.println(item.getName() + " (Cost: " + item.getCost() + ")");
+            }
         }
     }
     public ShopItem getItem(int index) {
-        return shopItems.get(index);
+        if (index >= 0 && index < shopItems.size()) {
+            return shopItems.get(index);
+        } else {
+            System.out.println("Invalid item number.");
+            return null;
+        }
     }
 }
 

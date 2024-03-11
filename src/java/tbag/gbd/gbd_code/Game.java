@@ -3,6 +3,7 @@ package tbag.gbd.gbd_code;
 import tbag.gbd.combat.Combat;
 import tbag.gbd.combat.Enemy;
 import tbag.gbd.combat.Weapon;
+import tbag.gbd.debug.Debug;
 import tbag.gbd.misc.Shop;
 import tbag.gbd.misc.ShopItem;
 import tbag.gbd.player.Player;
@@ -10,6 +11,8 @@ import tbag.gbd.potions.Potion;
 import tbag.gbd.potions.PotionsType;
 import tbag.gbd.AdventureGame;
 import tbag.gbd.combat.WeaponType;
+
+import java.util.Scanner;
 
 /**
  * @author Samuel Ratzel | Lukas Knappich | [UR NAME]
@@ -24,12 +27,14 @@ public class Game {
     private static Enemy enemy;
     private static Potion potions;
     private static PotionsType healSize;
+    Scanner inputScanner = new Scanner(System.in);
     Player player;
     Shop shop;
-
+    Debug debug;
     public Game(AdventureGame adventureGame) {
         this.game = adventureGame;
         this.combat = new Combat(adventureGame);
+        this.debug = new Debug();
     }
 
     Weapon deutschesLangschwert = new Weapon("Deutsches Langschwert", WeaponType.LONG_RANGE, 200, 400, 300, 0.3);
@@ -41,11 +46,11 @@ public class Game {
     ShopItem item1 = new ShopItem(deutschesLangschwert, 2,1);
 
 
+
+
     public void start(String playerName) throws InterruptedException {
         this.playerName = playerName;
         Player player = new Player(playerName, 100, 10, 3);
-        Shop shop = new Shop(player,3);
-        player.setName(playerName);
         player.showStats();
         game.show("Welcome to the Adventure Game!");
         player.addWeapon(dolch);
@@ -62,11 +67,15 @@ public class Game {
             game.wait(2);
             Enemy enemy = new Enemy("Goblin", 100, rustySword,1);
 
+
             // Simulate combat between the player and the enemy
             combat.engageInCombat(player, enemy);
 
-            shop.newShop("sasmuels");
+            shop = new Shop(player,3, inputScanner);
+            player.setName(playerName);
             shop.addItem(item1);
+            shop.newShop("sasmuels");
+
 
 
 
