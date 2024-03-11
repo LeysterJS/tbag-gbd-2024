@@ -1,6 +1,7 @@
 package tbag.gbd.player;
 
 import tbag.gbd.cosmetic.ConsoleColors;
+import tbag.gbd.debug.Debug;
 import tbag.gbd.misc.ShopItem;
 import tbag.gbd.potions.Potion;
 import tbag.gbd.combat.Weapon;
@@ -24,6 +25,7 @@ public class Player {
     private List<Potion> potions;
     private Weapon equippedWeapon;
     private Potion equippedPotion;
+    private Debug debug = new Debug();
 
 
 
@@ -64,13 +66,13 @@ public class Player {
     }
 
     public void addWeapon(Weapon weapon) {
-        System.out.println("Before adding a weapon: " + weapons.size() + "/" + maxWeapons);
+        debug.message("Before adding a weapon: " + weapons.size() + "/" + maxWeapons);
         if (weapons.size() < maxWeapons) {
             weapons.add(weapon);
         } else {
             System.out.println("Cannot carry more weapons.");
         }
-        System.out.println("After adding a weapon: " + weapons.size() + "/" + maxWeapons);
+        debug.message("After adding a weapon: " + weapons.size() + "/" + maxWeapons);
     }
 
     public void displayWeapons() {

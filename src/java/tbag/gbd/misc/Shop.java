@@ -63,6 +63,7 @@ public class Shop {
                 System.out.println("Welcome to the " + shopName + "!");
                 System.out.println("i can offer you stuff");
                 displayItems();
+                exitShop();
                 break;
 
             case "no":
@@ -132,6 +133,7 @@ public class Shop {
 
     public void displayItems() {
         for (ShopItem item : shopItems) {
+            System.out.println("deine items");
             System.out.println(item.getName() + ": " + item.getCost());
         }
     }

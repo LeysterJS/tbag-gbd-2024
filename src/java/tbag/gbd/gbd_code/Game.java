@@ -67,7 +67,6 @@ public class Game {
 
             shop.newShop("sasmuels");
             shop.addItem(item1);
-            shop.exitShop();
 
 
 

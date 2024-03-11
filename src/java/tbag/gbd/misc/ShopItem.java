@@ -2,6 +2,12 @@ package tbag.gbd.misc;
 
 import tbag.gbd.combat.Weapon;
 
+/**
+ * @author Samuel Ratzel | Lukas Knappich
+ * @version 1.0
+ * @since 29.02.24
+ */
+
 public class ShopItem {
     private int stock;
     private Weapon weapon;
