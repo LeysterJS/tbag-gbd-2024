@@ -1,6 +1,5 @@
 package tbag.gbd.debug;
 
-import org.w3c.dom.ls.LSOutput;
 import tbag.gbd.cosmetic.ConsoleColors;
 
 public class Debug {
