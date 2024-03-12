@@ -68,7 +68,6 @@ public class Shop {
                 bigTexts.shop();
 
                 System.out.println("Welcome to the " + shopName + "!");
-                System.out.println("i can offer you stuff");
                 displayItems();
                 exitShop();
                 break;
@@ -140,7 +139,12 @@ public class Shop {
         } else {
             System.out.println("Here are the items available in the shop:");
             for (ShopItem item : shopItems) {
-                System.out.println(item.getName() + " (Cost: " + item.getCost() + ")");
+                //System.out.println(item.getName() + " (Cost: " + item.getCost() + ")");
+                if (player.getMoney() >= item.getCost()) {
+                    System.out.println(ConsoleColors.GREEN + item.getName() + " (Cost: " + item.getCost() + ")" + ConsoleColors.RESET);
+                } else {
+                    System.out.println(ConsoleColors.RED + item.getName() + " (Cost: " + item.getCost() + ")" + ConsoleColors.RESET);
+                }
             }
         }
     }

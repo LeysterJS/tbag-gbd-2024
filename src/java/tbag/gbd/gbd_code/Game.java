@@ -44,6 +44,8 @@ public class Game {
     Potion smallHeal = new Potion("small potion", 25, PotionsType.SMALL_POT);
 
     ShopItem item1 = new ShopItem(deutschesLangschwert, 2,1);
+    ShopItem item2 = new ShopItem(dolch, 20,1);
+
 
 
 
@@ -72,8 +74,8 @@ public class Game {
             combat.engageInCombat(player, enemy);
 
             shop = new Shop(player,3, inputScanner);
-            player.setName(playerName);
             shop.addItem(item1);
+            shop.addItem(item2);
             shop.newShop("sasmuels");
 
 
