@@ -100,6 +100,7 @@ public class Shop {
                 player.addWeapon(item.getWeapon());
                 player.removeMoney(item.getCost());
                 item.decreaseStock();
+                displayItems();
             } else {
                 if(player.getMoney() < item.getCost()) {
                     System.out.println("You do not have enough money to buy this item.");
