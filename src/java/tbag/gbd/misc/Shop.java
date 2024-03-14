@@ -1,5 +1,6 @@
 package tbag.gbd.misc;
 
+import tbag.gbd.AdventureGame;
 import tbag.gbd.debug.Debug;
 import tbag.gbd.gbd_code.Game;
 import tbag.gbd.player.Player;
@@ -25,7 +26,7 @@ public class Shop {
     private String auswahl;
     private Player player;
     private int shopSize;
-    private Game game;
+    private AdventureGame game;
     private Debug debug = new Debug();
     private Scanner shop;
 
@@ -36,7 +37,7 @@ public class Shop {
         this.shop = scanner;
     }
 
-    public void newShop(String shopName) {
+    public void newShop(String shopName) throws InterruptedException {
         BigTexts bigTexts = new BigTexts();
 
         Scanner shop = new Scanner(System.in);
@@ -61,6 +62,7 @@ public class Shop {
         System.out.println("Sure | " + ConsoleColors.GREEN + "Yes" + ConsoleColors.RESET);
         System.out.println("No thanks i am good  | " + ConsoleColors.RED + "No" + ConsoleColors.RESET);
         auswahl = shop.nextLine().toLowerCase();
+        game.wait(2);
 
         switch (auswahl) {
 
