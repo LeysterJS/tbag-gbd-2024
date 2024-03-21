@@ -10,6 +10,11 @@ Add shop system
 > - Add a posibillity for the Dev to create a new merchant with their own shop and price #WIP
 > - Add weapon items, healt boosts (more max health), pocket boost (more max potions and weapons) 
 
+Add a level system
+> - Add a level system that increases the max health and strength of the player
+> - maybe add a skill tree
+
+
 Add "run away"
 > - For enemy low chance, will most likely die by trying
 > - For player always an option, lower chances of success when less health
@@ -19,3 +24,4 @@ Add strength potion
 > - Add a Strength potion that increases damage for the next 3 attacks (depends on Type)
 
 Add a "boss" system maybe?
+> - Add a boss system that will spawn a boss every 10 levels
