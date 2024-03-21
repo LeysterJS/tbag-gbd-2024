@@ -41,3 +41,6 @@ Add GUI for the game
 > - Add a GUI for the Inventory
 
 Add custom img for the inventory GUI
+> - Add a custom img for the inventory GUI
+> - Set the img to the right size
+> - Set default img for the different Types
