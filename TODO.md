@@ -14,3 +14,8 @@ Add "run away"
 > - For enemy low chance, will most likely die by trying
 > - For player always an option, lower chances of success when less health
 > - Penalty?!
+
+Add strength potion
+> - Add a Strength potion that increases damage for the next 3 attacks (depends on Type)
+
+Add a "boss" system maybe?
