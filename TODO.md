@@ -32,3 +32,10 @@ Add a "boss" system maybe?
 > - Add a boss system that will spawn a boss every 10 levels
 
 Find a way to "clear" the console
+
+Add GUI for the game
+> - Add a GUI for better visibility of the game
+> - Add a GUI for the skill tree
+> - Add a GUI for the healthbar and armor
+> - Add a GUI for the enemy healthbar
+> - Add a GUI for the Inventory
