@@ -2,6 +2,7 @@ Add Drops to enemy death
 > - Enemy max health / 10 = Amount of gold #DONE
 > - Drop weapon holding
 > - drop amount of potions holding (select random between small, medium, big)
+> - chance to drop armor
 
 Add shop system
 > - Add a Merchant to buy weapons (price set by Player) #DONE
