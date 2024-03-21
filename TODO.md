@@ -29,3 +29,5 @@ Add strength potion
 
 Add a "boss" system maybe?
 > - Add a boss system that will spawn a boss every 10 levels
+
+Find a way to "clear" the console
