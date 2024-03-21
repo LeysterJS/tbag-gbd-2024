@@ -11,6 +11,10 @@ import java.util.Scanner;
 public class AdventureGame {
     private Scanner scanner;
 
+    public AdventureGame() {
+        this.scanner = new Scanner(System.in);
+    }
+
     public AdventureGame(Scanner scanner) {
         this.scanner = scanner;
     }
