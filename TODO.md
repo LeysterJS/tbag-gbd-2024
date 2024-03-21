@@ -39,3 +39,5 @@ Add GUI for the game
 > - Add a GUI for the healthbar and armor
 > - Add a GUI for the enemy healthbar
 > - Add a GUI for the Inventory
+
+Add custom img for the inventory GUI
