@@ -2,7 +2,7 @@ package tbag.gbd.potions;
 
 /**
  *
- * @author Samuel Ratzel
+ * @author Samuel Ratzel | Lukas Knappich
  * @since 29.02.24
  * @version 1.0
  *
