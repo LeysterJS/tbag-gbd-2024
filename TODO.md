@@ -12,8 +12,12 @@ Add shop system
 
 Add a level system
 > - Add a level system that increases the max health and strength of the player
-> - maybe add a skill tree
+> - Add a skill tree
+> - Add no custom skill tree
 
+Add armor system
+> - Add an armor system that reduces the damage taken by the player and the enemy
+> - Add custom armor system 
 
 Add "run away"
 > - For enemy low chance, will most likely die by trying
