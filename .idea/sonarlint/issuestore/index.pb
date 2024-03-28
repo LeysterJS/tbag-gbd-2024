@@ -57,3 +57,5 @@ G.idea/sonarlint/issuestore/6/b/6bc361fab678f74f7da63b229ace2fc9d3130980,2/e/2e
 Q.idea/sonarlint/securityhotspotstore/b/0/b04578cffb47b1e57970601a0cacef6081245859,f/2/f235835ed945e2bdc599be5466a48e135a881845
 Å
 Q.idea/sonarlint/securityhotspotstore/b/b/bbf202272a96de5cd6b6828ffdc55fb3ce45289c,4/8/4863281891d32ef796d6f680d78cb100e7c940be
+7
+pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
