@@ -1,6 +1,7 @@
 package tbag.gbd.combat;
 
 import tbag.gbd.cosmetic.ConsoleColors;
+import tbag.gbd.debug.Debug;
 import tbag.gbd.player.Player;
 import tbag.gbd.AdventureGame;
 import tbag.gbd.BigTexts;
@@ -17,6 +18,7 @@ public class Combat {
     private static AdventureGame game;
     private static Potion potion;
     private static Player player;
+    private static Debug debug;
 
     public Combat(AdventureGame adventureGame) {
         this.game = adventureGame;

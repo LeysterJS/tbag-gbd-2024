@@ -1,12 +1,16 @@
 package tbag.gbd.player;
 
+import tbag.gbd.AdventureGame;
 import tbag.gbd.cosmetic.ConsoleColors;
 import tbag.gbd.debug.Debug;
+import tbag.gbd.gbd_code.Game;
 import tbag.gbd.misc.ShopItem;
 import tbag.gbd.potions.Potion;
 import tbag.gbd.combat.Weapon;
 import java.util.ArrayList;
 import java.util.List;
+import tbag.gbd.gbd_code.Game;
+
 
 /**
  * @author Lukas Knappich | Samuel Ratzel
@@ -26,10 +30,11 @@ public class Player {
     private Weapon equippedWeapon;
     private Potion equippedPotion;
     private Debug debug = new Debug();
+    private AdventureGame game;
 
 
 
-    public Player(String name, double health, int maxWeapons, int maxPotions) {
+    public Player(String name, double health, int maxWeapons, int maxPotions, AdventureGame game) {
         this.name = name;
         this.health = health;
         this.maxHealth = health;
@@ -37,6 +42,7 @@ public class Player {
         this.maxPotions = maxPotions;
         this.weapons = new ArrayList<>();
         this.potions = new ArrayList<>();
+        this.game = game;
 
     }
 
@@ -45,7 +51,10 @@ public class Player {
     }
 
     public void showStats(){
-        System.out.println( ConsoleColors.GREEN + "Name: " + name + ConsoleColors.RED + " | Health: " + health + ConsoleColors.YELLOW + " | Money: " + money + ConsoleColors.RESET);
+        System.out.println("DEBUG - Name: " + this.name);
+
+        System.out.println( ConsoleColors.GREEN + "Name: " + this.name
+                + ConsoleColors.RED + " | Health: " + health + ConsoleColors.YELLOW + " | Money: " + money + ConsoleColors.RESET);
     }
 
     public void addPotion(Potion potion){

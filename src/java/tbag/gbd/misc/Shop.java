@@ -30,11 +30,12 @@ public class Shop {
     private Debug debug = new Debug();
     private Scanner shop;
 
-    public Shop(Player player, int shopSize, Scanner scanner) {
+    public Shop(Player player, int shopSize, Scanner scanner, AdventureGame game) {
         this.player = player;
         this.shopSize = shopSize;
         this.shopItems = new ArrayList<>();
         this.shop = scanner;
+        this.game = game;
     }
 
     public void newShop(String shopName) throws InterruptedException {
@@ -70,9 +71,24 @@ public class Shop {
                 bigTexts.shop();
 
                 System.out.println("Welcome to the " + shopName + "!");
-                displayItems();
-                exitShop();
-                break;
+                System.out.println("Here you can buy weapons and potions to help you on your journey.");
+                System.out.println("Möchtest du etwas kaufen oder verkaufen?");
+                auswahl = shop.nextLine().toLowerCase();
+
+            switch (auswahl) {
+                case "kaufen":
+                    displayItems();
+                    exitShop();
+                    break;
+
+                case "verkaufen":
+                    System.out.println("You can sell your weapons and potions here.");
+                    break;
+
+                default:
+                    System.out.println("This is not a valid option. Please try again.");
+                    break;
+            }
 
             case "no":
                 System.out.println("Okey Bye!");
@@ -104,10 +120,10 @@ public class Shop {
                 item.decreaseStock();
                 displayItems();
             } else {
-                if(player.getMoney() < item.getCost()) {
+                if (player.getMoney() < item.getCost()) {
                     System.out.println("You do not have enough money to buy this item.");
                 }
-                if(player.getWeapons().size() >= player.getMaxWeapons()) {
+                if (player.getWeapons().size() >= player.getMaxWeapons()) {
                     System.out.println("You cannot carry any more weapons.");
                 }
             }
@@ -151,6 +167,7 @@ public class Shop {
             }
         }
     }
+
     public ShopItem getItem(int index) {
         if (index >= 0 && index < shopItems.size()) {
             return shopItems.get(index);

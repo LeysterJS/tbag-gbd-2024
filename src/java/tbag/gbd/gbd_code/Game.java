@@ -35,6 +35,8 @@ public class Game {
         this.game = adventureGame;
         this.combat = new Combat(adventureGame);
         this.debug = new Debug();
+        this.player = new Player(playerName, 100, 10, 3, game);
+        this.shop = new Shop(player,3, inputScanner, game);
     }
 
     Weapon deutschesLangschwert = new Weapon("Deutsches Langschwert", WeaponType.LONG_RANGE, 200, 400, 300, 0.3);
@@ -52,7 +54,6 @@ public class Game {
 
     public void start(String playerName) throws InterruptedException {
         this.playerName = playerName;
-        Player player = new Player(playerName, 100, 10, 3);
         player.showStats();
         game.show("Welcome to the Adventure Game!");
         player.addWeapon(dolch);
@@ -73,10 +74,24 @@ public class Game {
             // Simulate combat between the player and the enemy
             combat.engageInCombat(player, enemy);
 
-            shop = new Shop(player,3, inputScanner);
-            shop.addItem(item1);
-            shop.addItem(item2);
-            shop.newShop("sasmuels");
+            if(player.getHealth() <= 0) {
+                game.show("You have died. Game over.");
+                System.exit(0);
+            }else {
+                shop.addItem(item1);
+                shop.addItem(item2);
+                shop.newShop("test");
+                game.show("You are in a forest. You come to a crossroads.");
+                String direction2 = game.ask("Do you want to go left or right?");
+
+                if (direction2.equals("left")) {
+                    game.show("You encounter a friendly elf. He gives you a Deutsches Langschwert.");
+                }else if (direction2.equals("right")) {
+                game.show("oke");
+
+                }
+
+            }
 
 
 
